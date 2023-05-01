@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- <div class="search">
+            <form action="/search" method="get">
+                <input type="search" name="search" placeholder="Search..." id="search">
+                <input type="submit" value="Search">
+            </form>
+        </div> -->
+        <div class="nav">
+            <div class="nav-item" id="post">POSTS</div>
+            <div class="nav-item" id="profile">PROFILE</div>
+        
+    </div>
+    <div class="post-section">
+        <div class="post-form" id="post-form">
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <textarea name="text" id="" cols="30" rows="5" placeholder="What's on your mind?"></textarea>
+                <label for="fileupload">Choose a file to upload with your word</label>
+                <input type="file" name="file" id="fileupload">
+                <input type="submit" value="POST">
+            </form>
+        </div>
+        <div class="posts" id="posts">
+            <div class="post">
+                <div class="user">Domak</div>
+                <div class="text">Love is just an emotion</div>
+                <div class="img"><img src="test.png" alt="" srcset=""></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

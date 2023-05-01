@@ -1,0 +1,3 @@
+__pycache__
+social/static/images/*
+instance/database.db

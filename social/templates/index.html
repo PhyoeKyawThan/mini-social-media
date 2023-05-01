@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}HOME{% endblock %}
+
+{% block home %}
+
+<div class="post-section">
+    <div class="posts" id="posts">
+        {% for post in posts%}
+        <div class="post">
+            <div class="user">{{ post.author.username }}</div>
+            <div class="text">{{ post['caption'] }}</div>
+            {% if post['imgPath'] != 'static/images/' %}
+                <div class="img"><img src="{{ post['imgPath'] }}" alt="" srcset=""></div>
+                {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

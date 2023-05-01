@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}PROFILE{% endblock %}
+
+{% block home %}
+
+<div class="post-section">
+    <div class="profile-section" id="profile-section">
+        <div class="post-form" id="post-form">
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <textarea name="caption" id="" cols="30" rows="5" placeholder="What's on your mind?"></textarea>
+                <label for="fileupload">Choose a file to upload with your word</label>
+                <input type="file" name="file" id="fileupload">
+                <input type="submit" value="POST">
+            </form>
+        </div>
+        <div class="posts">
+            {% for data in posts%}
+            <div class="post">
+                <div class="user">{{ data.author.username }}</div>
+                <div class="delete">DELETE</div>
+                <div class="text">{{ data['caption'] }}</div>
+                {% if data['imgPath'] != 'static/images/' %}
+                <div class="img"><img src="{{ data['imgPath'] }}" alt="" srcset=""></div>
+                {% endif %}
+            </div>
+            
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

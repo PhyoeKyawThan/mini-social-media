@@ -1,0 +1,115 @@
+*{
+    padding: 0;
+    width: 100%;
+    margin: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background-color: black;
+    color: green;
+}
+/* start nav section */
+
+
+
+.container .nav{
+    color: white;
+    display: flex;
+    background-color: black;
+    flex-wrap: nowrap;
+    margin-top: -30px;
+    text-align: center;
+    padding: 5px;
+    border: none;
+    border-bottom: 2px solid black;
+    box-shadow: 0 5px 10px whitesmoke;
+    position: fixed;
+}
+
+.container .nav .nav-item:first-child{
+    border-right: 1px solid green;
+}
+
+.container .nav .nav-item:hover{
+    color: green;
+    cursor: pointer;
+    background-color: rgb(32, 15, 15);
+}
+
+/* end nav  */
+/* start  post view*/
+.post-section{
+    margin-top: 30px;
+    padding-top: 10px;
+    box-sizing: border-box;
+}
+
+.post-form{
+    overflow: hidden;    
+    background-color: rgb(63, 53, 45);
+    padding: 10px;
+    text-align: center;
+}
+
+#post-form{
+    display: none;
+}
+
+
+.post-form input[type=submit]{
+    padding: 10px;
+    width: 100px;
+    border: none;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+
+/* posts  */
+.posts .post{
+    border: 1px solid white;
+    padding: 10px;
+    overflow: scroll;
+    margin-bottom: 10px;
+}
+
+.posts .post .user{
+    display: inline;
+    border: 1px solid red;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px red;
+    padding: 5px;
+}
+
+.posts .post .text{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.posts .post img{
+    width: 40vw;
+}
+
+.posts .post .img{
+    text-align: center;
+}
+
+/* .posts .post .react{
+    border-top: 1px solid whitesmoke;
+    margin-top: 5px;
+} */
+
+
+@media  screen and (max-width: 393px) {
+    .post-section{
+        width: 90vw;
+    }
+    .posts .post img{
+        width: 100%;
+    }
+}
+@media screen and (min-width: 400px){
+    .post-section{
+        width: 90vw;
+    }
+}

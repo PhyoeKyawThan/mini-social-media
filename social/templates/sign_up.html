@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sign Up{% endblock %}</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: auto;
+        width: 100%;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .container {
+        width: 80%;
+    }
+
+    .container .form h2 {
+        text-align: center;
+        padding: 50px;
+    }
+
+    .container .form {
+        padding: 20px;
+        text-align: center;
+        margin: 50px auto;
+    }
+
+    .container .form input {
+        padding: 10px;
+        border: none;
+        background-color: whitesmoke;
+        color: black;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+
+    .container .form input[type=submit] {
+        width: auto;
+        padding: 10px;
+        background-color: green;
+        color: white;
+    }
+</style>
+
+<body>
+    <div class="container">
+
+        <div class="form">
+            <h2>{% block header %}Sign Up{% endblock %}</h2>
+            {% block error %}{% endblock %}
+            {% block action %}<form action="/auth/sign_up" method="post">{% endblock %}
+                <input type="text" name="username" placeholder="Enter Username" id="username">
+                <input type="password" name="password" placeholder="Enter password" id="password">
+                {% block confirm %}<input type="password" name="confirm_pass" placeholder="Confirm Your password" id="">{% endblock %}
+                {% block submit %}<input type="submit" value="Sign_Up">{% endblock %}
+            </form>
+            <div class="login">
+                {% block authtext %}<div class="text">Already have account?</div>{% endblock %}
+                {% block changeauth %}<a href="{{url_for('auth.login')}}">Login</a>{% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

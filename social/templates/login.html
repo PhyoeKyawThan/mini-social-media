@@ -1,0 +1,12 @@
+{% extends "sign_up.html" %}
+{% block title %}Login{% endblock %}
+{% block header %}Login{% endblock %}
+{% block error %}
+<b style="color: red; font-size: 20px;">{{ error }}</b>
+{% endblock %}
+
+{% block action %}<form action="/auth/login" method="post">{% endblock %}
+{% block confirm %}{% endblock %}
+{% block submit %}<input type="submit" value="Login">{% endblock %}
+{% block authtext %}<div class="text">U don't have any account?</div>{% endblock %}
+{% block changeauth %}<a href="{{url_for('auth.sign_up')}}">Signup</a>{% endblock %}
