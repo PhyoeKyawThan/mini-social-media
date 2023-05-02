@@ -42,4 +42,4 @@ def profile():
 
 @views.errorhandler(401)
 def unauthorized_error_handlar(error):
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('auth.sign_up'))
