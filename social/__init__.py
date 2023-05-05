@@ -9,7 +9,7 @@ def create_app():
     app.config['SECRET_KEY'] = 'domisgay'
     app.secret_key = 'domis'
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///database.db"
-    app.config['UPLOAD_FOLDER'] = 'social/static/images'#image file save path
+    app.config['UPLOAD_FOLDER'] = 'social/static'#image file save path
     db.init_app(app)
     
     from .views import views

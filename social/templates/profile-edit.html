@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Your Profile</title>
+    <style>
+        *{
+            width: 100%;
+            margin: auto;
+            box-sizing: border-box;
+            padding: 0;
+            color: rgb(31, 65, 31);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+        }
+
+        .container{
+            margin: 10px auto;
+            width: 80%;
+            text-align: center;
+        }
+
+        .photo-field{
+            width: 150px;
+            height: 150px;
+            border: 1px solid black;
+            border-radius: 50%;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .photo-field img{
+            height: 100%;
+            width: 100%;
+        }
+
+        .profile{
+            margin: 10px auto;
+        }
+
+        input[type=file]{
+            display: none;
+        }
+        label[for="profile"]{
+            font-size: 16px;
+            font-weight: bold;
+            background-color: grey;
+            cursor: pointer;
+            box-shadow: 0 0 10px 10px grey;
+        }
+        label[for="profile"]:active{
+            background-color: grey;
+        }
+
+        form input{
+            margin-bottom: 10px;
+            border-radius: 10px;
+            padding: 10px;
+            border: none;
+            background-color: grey;
+        }
+        
+        form input::placeholder{
+            color: white;
+        }
+
+        form input[type=submit]{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Update Your Profile</h2>
+        </div>
+        <div class="photo-field">
+            <img src="{{ current_user.profile }}" alt="profile" srcset="" id="image">
+        </div>
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="profile">
+                <input type="file" name="profile" id="profile" class="profile">
+                <label for="profile">📷</label>
+            </div>
+            <input type="text" name="username" id="" placeholder="Username" value="{{ current_user.username }}" class="username">
+            <input type="password" name="origin_pass" placeholder="Password" id="">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="{{ category }}" style="color: red; font-size: 10px; text-align:start;">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <input type="password" name="new_password" placeholder="New password" id="">
+            <input type="submit" value="Update">
+        </form>
+    </div>
+    <script>
+        let picInput = document.getElementById('profile');
+        let img      = document.getElementById('image');
+
+        picInput.addEventListener('change', (event)=>{
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.addEventListener('load', function() {
+            img.setAttribute('src', reader.result);
+            });
+
+        reader.readAsDataURL(file);
+            });
+    </script>
+</body>
+</html>

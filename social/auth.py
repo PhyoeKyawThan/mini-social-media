@@ -18,6 +18,7 @@ def sign_up():
             return redirect(url_for('auth.login'))
         if password != confirm_pass:
             flash("Password doesn't match", category='passnotmatch')
+            return redirect(url_for('auth.sign_up'))
         else:
             new_user = User(username=username, password=password, date=datetime.now())
             db.session.add(new_user)
@@ -44,13 +45,12 @@ def login():
         password = request.form['password']
         
         user = User.query.filter_by(username=username).first()
-        password = User.query.filter_by(password=password)
-        if user and password:
+        if user and password == user.password:
             login_user(user, remember=True)
             return redirect(url_for('views.home'))
         else:
-            msg = "Username or password doesn't match"
-            return render_template('login.html', error = msg)
+            flash("Invalid Username or Password", category="error")
+            return redirect(url_for('auth.login'))
     else:
         if current_user.is_authenticated:
             return redirect(url_for("views.home"))
@@ -61,4 +61,8 @@ def login():
 @login_required
 def logout():
     logout_user()
+    return redirect(url_for('auth.login'))
+
+@auth.errorhandler(401)
+def unauthorized_error():
     return redirect(url_for('auth.login'))

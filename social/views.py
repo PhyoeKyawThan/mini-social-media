@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, send_file, current_app
+from flask import Blueprint, render_template, request, redirect, url_for, session, send_file, current_app, flash
 from werkzeug.utils import secure_filename
 from os import path
 from flask_login import current_user, login_required
@@ -27,7 +27,8 @@ def upload():
         db.session.commit()
         #check file_null or not
         if upload_file:
-            if path.exists(path.join(current_app.config['UPLOAD_FOLDER'], file_name)):
+            PATH = f"images/{file_name}"
+            if path.exists(path.join(current_app.config['UPLOAD_FOLDER'], PATH)):
                 pass
             else:
                 upload_file.save(path.join(current_app.config['UPLOAD_FOLDER'], file_name))
@@ -39,6 +40,40 @@ def upload():
 def profile():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template("profile.html", posts=current_user.posts)
+
+@views.route('/edit_profile', methods=['POST', 'GET'])
+@login_required
+def edit_profile():
+    if request.method == 'POST':
+        profile = request.files['profile']
+        username = request.form['username']
+        origin_password = request.form['origin_pass']
+        new_password = request.form['new_password']
+        
+        #update pass and new profile location
+        user = User.query.filter_by(username=current_user).first()
+
+        if profile:
+            PATH = f"profiles/{secure_filename(profile.filename)}"
+            if path.exists(path.join(current_app.config['UPLOAD_FOLDER'], PATH)):
+                pass
+            else:
+                profile.save(path.join(current_app.config['UPLOAD_FOLDER'], PATH))
+                user.profile = f"static/profiles/{secure_filename(profile)}"
+        #username and password update 
+        if user.username != username:
+            user.username = username
+        if origin_password != '' or new_password != '':
+            if origin_password != current_user.password:
+                flash("Your old password is worng", category="passerror")
+                return redirect(url_for('views.edit_profile'))
+            elif current_user.password == new_password:
+                flash("New password must not same with original password", category="error")
+            return redirect(url_for('views.edit_profile'))
+        db.session.commit() #commit update data
+        return redirect(url_for('views.profile'))
+
+
 
 @views.errorhandler(401)
 def unauthorized_error_handlar(error):

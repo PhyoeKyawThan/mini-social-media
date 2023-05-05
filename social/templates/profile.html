@@ -4,6 +4,16 @@
 {% block home %}
 
 <div class="post-section">
+
+<div class="user-detail">
+    <div class="user">
+        {% if current_user.profile != '' %}
+        <img src="{{ current_user.profile }}" alt="Edit Profile" srcset="">
+        {% endif %}
+    </div>
+    <span class="username">{{ current_user.username }}</span>
+</div>
+
     <div class="profile-section" id="profile-section">
         <div class="post-form" id="post-form">
             <form action="/upload" method="post" enctype="multipart/form-data">

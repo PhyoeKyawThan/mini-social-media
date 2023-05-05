@@ -7,6 +7,7 @@ class Post(db.Model):
     caption = db.Column(db.String(1000))
     date    = db.Column(db.String(20), nullable=False)
     imgPath = db.Column(db.String(255))
+    profile = db.Column(db.String(225))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class User(db.Model, UserMixin):
