@@ -5,12 +5,13 @@
 
 <div class="post-section">
 
-<div class="user-detail">
+<a href="{{ url_for("views.edit_profile") }}"><div class="user-detail">
     <div class="user">
         {% if current_user.profile != '' %}
-        <img src="{{ current_user.profile }}" alt="Edit Profile" srcset="">
+        <img src="{{ current_user.profile }}" alt="Edit profile" srcset="">
         {% endif %}
     </div>
+    </a>
     <span class="username">{{ current_user.username }}</span>
 </div>
 
@@ -27,7 +28,7 @@
             {% for data in posts%}
             <div class="post">
                 <div class="user">{{ data.author.username }}</div>
-                <div class="delete">DELETE</div>
+                <div class="delete"><a href="{{ url_for('views.delete', id=data.id) }}">DELETE</a> </div>
                 <div class="text">{{ data['caption'] }}</div>
                 {% if data['imgPath'] != 'static/images/' %}
                 <div class="img"><img src="{{ data['imgPath'] }}" alt="" srcset=""></div>

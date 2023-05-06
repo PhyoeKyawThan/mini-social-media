@@ -31,7 +31,7 @@ def upload():
             if path.exists(path.join(current_app.config['UPLOAD_FOLDER'], PATH)):
                 pass
             else:
-                upload_file.save(path.join(current_app.config['UPLOAD_FOLDER'], file_name))
+                upload_file.save(path.join(current_app.config['UPLOAD_FOLDER'], PATH))
         return redirect(url_for('views.profile'))
         
 
@@ -41,9 +41,14 @@ def profile():
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template("profile.html", posts=current_user.posts)
 
-@views.route('/edit_profile', methods=['POST', 'GET'])
+@views.route("/edit_profile")
 @login_required
 def edit_profile():
+  return render_template("profile-edit.html")
+
+@views.route('/edit', methods=['POST', 'GET'])
+@login_required
+def edit():
     if request.method == 'POST':
         profile = request.files['profile']
         username = request.form['username']
@@ -51,30 +56,38 @@ def edit_profile():
         new_password = request.form['new_password']
         
         #update pass and new profile location
-        user = User.query.filter_by(username=current_user).first()
-
+        
         if profile:
             PATH = f"profiles/{secure_filename(profile.filename)}"
             if path.exists(path.join(current_app.config['UPLOAD_FOLDER'], PATH)):
                 pass
             else:
                 profile.save(path.join(current_app.config['UPLOAD_FOLDER'], PATH))
-                user.profile = f"static/profiles/{secure_filename(profile)}"
+                current_user.profile = f"static/profiles/{secure_filename(profile.filename)}"
+                
         #username and password update 
-        if user.username != username:
-            user.username = username
+        if current_user.username != username:
+            current_user.username = username
         if origin_password != '' or new_password != '':
             if origin_password != current_user.password:
                 flash("Your old password is worng", category="passerror")
                 return redirect(url_for('views.edit_profile'))
             elif current_user.password == new_password:
                 flash("New password must not same with original password", category="error")
-            return redirect(url_for('views.edit_profile'))
+                return redirect(url_for('views.edit_profile'))
+            else:
+              current_user.password = new_password
         db.session.commit() #commit update data
         return redirect(url_for('views.profile'))
 
-
-
+@views.route('/delete/<id>')
+@login_required
+def delete(id):
+    post = Post.query.filter_by(id=id).first()
+    db.session.delete(post)
+    db.session.commit()
+    return redirect(url_for('views.profile'))
+    
 @views.errorhandler(401)
 def unauthorized_error_handlar(error):
     return redirect(url_for('auth.sign_up'))

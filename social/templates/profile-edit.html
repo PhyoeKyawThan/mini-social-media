@@ -79,7 +79,7 @@
         <div class="photo-field">
             <img src="{{ current_user.profile }}" alt="profile" srcset="" id="image">
         </div>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="{{ url_for("views.edit") }}" method="post" enctype="multipart/form-data">
             <div class="profile">
                 <input type="file" name="profile" id="profile" class="profile">
                 <label for="profile">📷</label>
@@ -89,8 +89,11 @@
             {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
+                {% if category == "error" or category == "passerror" %}
                 <div class="{{ category }}" style="color: red; font-size: 10px; text-align:start;">{{ message }}</div>
+              {% endif %}
                 {% endfor %}
+                
             {% endif %}
             {% endwith %}
             <input type="password" name="new_password" placeholder="New password" id="">

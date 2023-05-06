@@ -20,7 +20,7 @@ def sign_up():
             flash("Password doesn't match", category='passnotmatch')
             return redirect(url_for('auth.sign_up'))
         else:
-            new_user = User(username=username, password=password, date=datetime.now())
+            new_user = User(username=username, password=password, profile = '',date=datetime.now())
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)

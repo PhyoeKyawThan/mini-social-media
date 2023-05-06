@@ -118,7 +118,9 @@ body{
     }
 
 }
-
+.posts .post .delete a{
+  text-decoration: none;
+}
 .user-detail{
     background-color: grey;
 }
