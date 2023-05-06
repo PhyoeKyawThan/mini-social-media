@@ -9,6 +9,6 @@ cd mini-social-media
 
 pip3 install -r requirements.txt
 
-mkdir social/static/images
+mkdir social/static/images && mkdir social/static/profiles
 
 python3 main.py
