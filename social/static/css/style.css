@@ -53,11 +53,19 @@ body{
     box-sizing: border-box;
 }
 
+.post-btn{
+    text-align: center;
+    margin: 10px auto;
+    cursor: pointer;
+}
+
 .post-form{
     overflow: hidden;    
     background-color: rgb(63, 53, 45);
     padding: 10px;
     text-align: center;
+    display: none;
+    position: relative;
 }
 
 
@@ -73,6 +81,7 @@ body{
 /* posts  */
 .posts .post{
     border: 1px solid white;
+    border-top-right-radius: 40px;
     padding: 10px;
     overflow: scroll;
     margin-bottom: 10px;
@@ -114,7 +123,8 @@ body{
         width: 100%;
     }
     .posts .post .delete{
-        margin-left: 15em;
+        margin-left: 20em;
+
     }
 
 }
@@ -123,9 +133,13 @@ body{
 }
 .user-detail{
     background-color: grey;
+    box-shadow: 0 0 5px 5px green;
+    border-top-left-radius: 15px;
+    text-align: center;
 }
 
 .user-detail .user{
+    position: relative;
     width: 50px;
     float: left;
     height: 50px;
@@ -133,9 +147,8 @@ body{
     border-radius: 50%;
     overflow: hidden;
     padding-top: 5px;
-    box-sizing: border-box;
     box-shadow: 0 0 10px 10px grey;
-    margin: 10px;
+    margin-bottom: 10px;
 }
 
 .user-detail .user img{
@@ -144,8 +157,8 @@ body{
 }
 
 .user-detail .username{
-    
     margin: 10px;
+    color: blanchedalmond;
 }
 
 
@@ -155,16 +168,24 @@ body{
         width: 90vw;
     }
 
+    .posts .post{
+        border-top-right-radius: 30px;
+    }
+
     .posts .post .delete{
-        margin-left: 70em;
+        margin-left: 73.5em;
     }
 }
 
 .posts .post .delete{
     display: inline;
     color: white;
-    background-color: red;
     padding: 5px;
+    box-shadow: 0 0 10px 10px blue;
     border: none;
     border-radius: 15px;
+}
+.posts .post .delete:hover{
+    box-shadow: none;
+    background-color: red;
 }
