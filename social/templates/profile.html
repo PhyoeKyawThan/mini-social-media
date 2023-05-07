@@ -19,10 +19,10 @@
         <div class="post-btn" id="post-btn">UPLOAD SOMETHING</div>
         <div class="post-form" id="post-form">
             <form action="/upload" method="post" enctype="multipart/form-data">
-                <textarea name="caption" id="" cols="30" rows="5" placeholder="What's on your mind?"></textarea>
+                <textarea name="caption" id="" cols="30" rows="5" placeholder="What's on your mind?" required></textarea>
                 <label for="fileupload">Choose a file to upload with your word</label>
                 <input type="file" name="file" id="fileupload">
-                <input type="submit" value="POST">
+                <input type="submit" value="POST" id="upload-btn">
             </form>
         </div>
         <div class="posts">
