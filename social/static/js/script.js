@@ -34,7 +34,6 @@ back.addEventListener('click', ()=>{
 
 post_btn.addEventListener('click', ()=>{
     post_form.style.display = 'block';
-    post_btn.style.display  = 'none';
 })
 
 upload.addEventListener('click', ()=>{
