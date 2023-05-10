@@ -33,7 +33,11 @@ back.addEventListener('click', ()=>{
 });
 
 post_btn.addEventListener('click', ()=>{
+    if(post_form.style.display === 'none'){
     post_form.style.display = 'block';
+    }else{
+        post_form.style.display = 'none';
+    }
 })
 
 upload.addEventListener('click', ()=>{

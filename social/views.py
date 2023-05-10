@@ -22,7 +22,10 @@ def upload():
         caption = request.form["caption"]
         upload_file = request.files['file']
         file_name = secure_filename(upload_file.filename)
-        if caption or upload_file:
+        if caption != '' or upload_file:
+            new_post = Post(caption=caption, date=datetime.now(), imgPath=path.join("static/images", file_name), user_id=current_user.id)
+            db.session.add(new_post)
+            db.session.commit()
         #check file_null or not
         if upload_file:
             PATH = f"images/{file_name}"
