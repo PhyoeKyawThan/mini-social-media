@@ -40,6 +40,7 @@ body{
 /* end nav  */
 /* start  post view*/
 .post-section{
+    position: absolute;
     margin-top: 30px;
     padding-top: 10px;
     box-sizing: border-box;
@@ -112,4 +113,32 @@ body{
     .post-section{
         width: 90vw;
     }
+}
+
+.img-view{
+    display: none;
+    width: 200px;
+    height: fit-content;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.img-view .back{
+    margin: 50px auto;
+}
+
+.img-view .back span{
+    font-size: x-large;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 50%;
+    background-color: antiquewhite;
+    display: inline;
+}
+
+.img-view .view{
+    width: 100%;
+    height: 100%;
+    margin-top: 40%;
 }
