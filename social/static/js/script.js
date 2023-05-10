@@ -3,7 +3,8 @@ let post_section = document.getElementById('post-section');
 let post_form = document.getElementById('post-form');
 let upload    = document.getElementById('upload-btn');
 let images = document.querySelectorAll('img');
-
+var view = document.getElementById('view');
+var imgSrc = view.querySelector('img');
 
 images.forEach((img)=>{
     img.onload = ()=>{
@@ -11,15 +12,25 @@ images.forEach((img)=>{
         if(imgHeight > 768){
             img.style.margin = '-50% auto';
         }
-        getAlt(img);
+        getSrc(img);
     }
 });
 
-var getAlt = (image)=>{
+var getSrc = (image)=>{
     image.addEventListener('click', (e)=>{
-        console.log(e.target.src);
+        imgSrc.src = e.target.src;
+        post_section.style.display = 'none';
+        document.querySelector('.img-view').style.display = 'block';
     })
+    
 }
+
+let back = document.querySelector('.back');
+back.addEventListener('click', ()=>{
+    post_section.style.display = 'block';
+    document.querySelector('.img-view').style.display = 'none';
+
+});
 
 post_btn.addEventListener('click', ()=>{
     post_form.style.display = 'block';

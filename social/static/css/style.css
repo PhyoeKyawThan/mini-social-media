@@ -192,3 +192,11 @@ body{
     box-shadow: none;
     background-color: red;
 }
+
+.img-view .back{
+    text-align: end;
+}
+
+.container .img-view{
+    display: none;
+}
