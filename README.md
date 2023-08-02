@@ -1,7 +1,8 @@
 # mini-social-media
+---
 Flask social app with login, sign_up, post and profile 
 ---
-alive at `http://minisocialmedia.pythonanywhere.com/`
+alive at http://minisocialmedia.pythonanywhere.com/
 
 ## To run locally
 git clone https://github.com/PhyoeKyawThan/mini-social-media
