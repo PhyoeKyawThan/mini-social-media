@@ -1,8 +1,11 @@
-# mini-social-media
+## mini-social-media
 ---
-Flask social app with login, sign_up, post and profile 
+<p align="center">**Flask social app with login, sign_up, post and profile**</p>
+
 ---
 alive at http://minisocialmedia.pythonanywhere.com/
+there's no logout feature but if u want to logout from your current account request to `/auth/logout`
+
 
 ## To run locally
 git clone https://github.com/PhyoeKyawThan/mini-social-media
